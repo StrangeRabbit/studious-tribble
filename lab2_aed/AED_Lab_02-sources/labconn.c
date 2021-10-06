@@ -96,6 +96,7 @@ int main(int argc, char *argv[])
       switch (BatchMode) {
       case 1:
          quick_find(id, N, fp, quietOut);
+         
          break;
       case 2:
          quick_union(id, N, fp, quietOut);
@@ -141,6 +142,7 @@ int main(int argc, char *argv[])
       switch (choice) {
       case 1:
          quick_find(id, N, fp, quietOut);
+         count_connections(id, N);
          break;
       case 2:
          quick_union(id, N, fp, quietOut);

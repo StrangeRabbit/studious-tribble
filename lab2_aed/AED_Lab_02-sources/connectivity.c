@@ -284,3 +284,66 @@ void compressed_weighted_quick_union(int *id, int N, FILE * fp, int quietOut)
 
    return;
 }
+
+
+typedef struct _connectivity
+{
+   int index;
+   int group;
+   struct _connectivity* next;
+   
+} connectivity;
+
+void count_connections(int *id, int N)
+{
+   int n_group = 1;
+   int exist;
+   connectivity* aux;
+   connectivity **head = (connectivity**) malloc(sizeof(connectivity*) * N);
+   head[0] = (connectivity*) malloc(sizeof(connectivity));
+   head[0]->index = 0;
+   head[0]->group = id[0];
+   head[0]->next = NULL;
+   for(unsigned int i = 1; i < N; i++){
+      exist = -1;
+      for(unsigned int j = 0; j < n_group; j++){
+         if(head[j]->group == id[i]){
+            exist = j;
+            break;
+         }
+      }
+      if(exist == -1){
+         head[n_group] = (connectivity*) malloc(sizeof(connectivity));
+         head[n_group]->group = id[i];
+         head[n_group]->index = i;
+         head[n_group]->next = NULL;
+         n_group++;
+      }
+      else{
+         aux = (connectivity*) malloc(sizeof(connectivity));
+         aux->next = head[exist];
+         head[exist] = aux;
+         aux->group = id[i];
+         aux->index = i;
+      }
+   }
+   
+   // ----------------------------------------------------------------------------------
+
+   for(unsigned int i = 0; i < n_group; i++){
+
+      while(head[i] != NULL){
+         printf("%d", head[i]->index);
+         if(head[i]->next != NULL){
+            printf(" - ");
+         }
+         aux = head[i]->next;
+         free(head[i]);
+         head[i] = aux;
+      }
+      printf("\n");
+      free(head[i]);
+   }
+   free(head);
+   printf("Numero de conjuntos: %d", n_group);
+}
