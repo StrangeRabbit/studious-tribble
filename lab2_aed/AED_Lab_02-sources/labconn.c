@@ -161,6 +161,8 @@ int main(int argc, char *argv[])
       rewind(fp);
       fscanf(fp, "%d", &N);
    }
+   free(id);
+   fclose(fp);
    exit(0);
 }
 
