@@ -17,14 +17,15 @@ bin: *.c
 	chmod +x labconn
 
 
-FILES_1=1x/10.txt 1x/100.txt 1x/1000.txt 1x/10000.txt
-FILES_A=abcde/a.txt abcde/b.txt abcde/c.txt abcde/d.txt abcde/e.txt
-FILES_Z=$(shell ls zx/*)
 
-FILES=${FILES_1} ${FILES_A} ${FILES_Z}
+FILES_Z=$(shell ls ../AED_Lab_02-tests/*)
+
+FILES=${FILES_Z}
 
 t:  t1 t2 t3 t4
 
+clean:
+	rm -f labconn
 
 t1:
 	rm -f out1.txt

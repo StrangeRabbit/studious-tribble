@@ -17,8 +17,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
 
 #include "connectivity.h"
+
+#define CHARS 100
 
 void usage(char *);
 
