@@ -347,3 +347,26 @@ void count_connections(int *id, int N)
    free(head);
    printf("Numero de conjuntos: %d", n_group);
 }
+
+int heighest_tree(int *id, int N)
+{
+   int maxH = 0, aux = 0;
+   int *sz = (int*) calloc(N,sizeof(int));
+   for(unsigned int i = 0; i < N; i++){
+      aux = recursive(id, i, sz);
+      sz[i] = aux;
+      if(aux > maxH) maxH = aux;
+   }
+   return maxH;
+}
+
+int recursive(int *id, int i, int *sz)
+{
+   if(sz[i] != 0)
+      return sz[i];
+   else if(id[i] == i)
+      return 1;
+   else
+      sz[i] = recursive(id, id[i], sz) + 1;
+      return sz[i];
+}

@@ -20,5 +20,7 @@ void quick_union(int *id, int N, FILE * fp, int quietOut);
 void weighted_quick_union(int *id, int N, FILE * fp, int quietOut);
 void compressed_weighted_quick_union(int *id, int N, FILE * fp, int quietOut);
 void count_connections(int *id, int N);
+int heighest_tree(int *id, int N);
+int recursive(int *id, int i, int *sz);
 
 #endif    /* __connectivity__ */

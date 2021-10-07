@@ -146,6 +146,7 @@ int main(int argc, char *argv[])
          break;
       case 2:
          quick_union(id, N, fp, quietOut);
+         printf("\nHEIGHEST TREE: %d\n", heighest_tree(id, N));
          break;
       case 3:
          weighted_quick_union(id, N, fp, quietOut);
