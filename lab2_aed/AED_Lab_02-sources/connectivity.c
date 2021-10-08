@@ -203,6 +203,8 @@ void weighted_quick_union(int *id, int N, FILE * fp, int quietOut)
    }
    printf("WQU: The number of links performed is %d for %d input pairs. %lu find_access / %lu union_access\n",
           links_cnt, pairs_cnt, find_access, union_access);
+   free(sz);
+   return;
 }
 
 
@@ -281,7 +283,7 @@ void compressed_weighted_quick_union(int *id, int N, FILE * fp, int quietOut)
    }
    printf("CWQU: The number of links performed is %d for %d input pairs. %lu find_access / %lu union_access\n",
           links_cnt, pairs_cnt, find_access, union_access);
-
+   free(sz);
    return;
 }
 
