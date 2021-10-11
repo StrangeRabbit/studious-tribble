@@ -211,12 +211,12 @@ void EscreveFicheiro ( char *ficheiro, st_texto *t )
   strcpy ( nome, ficheiro );
   strcat ( nome, ".palavras" );
   f = AbreFicheiro ( nome, "w" );
-  for ( i = 0; i < (*t).n_dist_palavras; i++ ) {
+  for ( i = 0; i < (*t).n_total_palavras; i++ ) {
     fprintf ( f, "%d: %s\n", (*t).ocorrencias[i], (*t).palavras[i] );
   }
   printf ( "Count of distinct words: %d\n", (*t).n_dist_palavras );
   fclose ( f );
-  for ( i = 0; i < (*t).n_dist_palavras; i++ ) {
+  for ( i = 0; i < (*t).n_total_palavras; i++ ) {
     free((*t).palavras[i]);
   }
   free((*t).palavras);
