@@ -202,7 +202,7 @@ void EscreveFicheiro ( char *ficheiro, st_texto *t )
   char *nome;
   int i = 0;
 
-  nome =  strcat(ficheiro, ".palavras") ;
+  nome =  (char*) malloc(sizeof(char) * (strlen(ficheiro) + strlen(".palavra")));
   /* including dot (.) extension and string termination, see below */
   if ( nome == NULL ) {
     fprintf ( stderr, "ERROR: not enough memory available!\n" );
