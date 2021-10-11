@@ -102,23 +102,23 @@ void AlocaTabelaPalavras ( char *ficheiro, st_texto *t)
   fclose ( fp );
   printf ( "Words count: %d\n", (*t).n_total_palavras );
 
-  (*t).palavras =  (char**) malloc(sizeof(char*) * (*t).n_total_palavras);
+  (*t).palavras =  (char**) malloc((*t).n_total_palavras * sizeof(char*));
   if ( (*t).palavras == NULL ) {
     fprintf ( stderr, "ERROR: not enough memory available!\n" );
     exit ( 2 );
   }
-  (*t).ocorrencias = (int*) malloc(sizeof(int) * (*t).n_total_palavras);
+  (*t).ocorrencias = (int*) malloc((*t).n_total_palavras * sizeof(int));
   if ( (*t).ocorrencias == NULL ) {
     fprintf ( stderr, "ERROR: not enough memory available!\n" );
     exit ( 4 );
   }
   for ( i = 0; i < (*t).n_total_palavras; i++ )   {
-    (*t).palavras[i] =  (char*) malloc(sizeof(char) * n_max_caracteres);
+    (*t).palavras[i] =  (char*) malloc(n_max_caracteres * sizeof(char));
     if ( (*t).palavras[i] == NULL ) {
       fprintf ( stderr, "ERROR: not enough memory available!\n" );
       exit ( 3 );
     }
-    (*t).palavras[i][0] = '\n';
+    (*t).palavras[i][0] = '\0';
     (*t).ocorrencias[i] = 0;
   }
   return;
@@ -202,7 +202,7 @@ void EscreveFicheiro ( char *ficheiro, st_texto *t )
   char *nome;
   int i = 0;
 
-  nome =  (char*) malloc(sizeof(char) * (strlen(ficheiro) + strlen(".palavra")));
+  nome =  (char*) malloc(strlen(ficheiro) + strlen(".palavras") + 1) ;
   /* including dot (.) extension and string termination, see below */
   if ( nome == NULL ) {
     fprintf ( stderr, "ERROR: not enough memory available!\n" );
@@ -213,13 +213,15 @@ void EscreveFicheiro ( char *ficheiro, st_texto *t )
   f = AbreFicheiro ( nome, "w" );
   for ( i = 0; i < (*t).n_dist_palavras; i++ ) {
     fprintf ( f, "%d: %s\n", (*t).ocorrencias[i], (*t).palavras[i] );
-    free((*t).palavras[i]);
   }
   printf ( "Count of distinct words: %d\n", (*t).n_dist_palavras );
+  fclose ( f );
+  for ( i = 0; i < (*t).n_dist_palavras; i++ ) {
+    free((*t).palavras[i]);
+  }
   free((*t).palavras);
   free((*t).ocorrencias);
-  fclose ( f );
-
+  free(nome);
   /* Anything else I should do here? */
 
   return;
