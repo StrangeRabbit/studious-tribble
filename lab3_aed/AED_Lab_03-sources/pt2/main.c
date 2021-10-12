@@ -125,15 +125,12 @@ int main(int argc, char *argv[])
 void write_back(t_lista *lp, FILE *fpOut)
 {
   t_lista *aux = lp;
-  if(aux -> prox == NULL)
-  {
-    escreveUmaPalavra((t_palavra*) getItemLista(aux), fpOut);
-  }
-  else
+  if(aux -> prox != NULL)
   {
     write_back(aux->prox, fpOut);
-    escreveUmaPalavra((t_palavra*) getItemLista(aux), fpOut);
   }
+  escreveUmaPalavra((t_palavra*) getItemLista(aux), fpOut);
+  
   return;
 }
 
