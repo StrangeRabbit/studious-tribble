@@ -125,7 +125,7 @@ t_palavra  *criaPalavra(char *pal)
     if(nova == NULL)
       erroMemoria("Reserve memory for new word in criaPalavra" );
 
-  nova -> pal = (char*) malloc(strlen(pal));
+  nova -> pal = (char*) malloc(strlen(pal) + 1);
     if(nova == NULL)
       erroMemoria("Reserve of name in criaPalavra" );
 
