@@ -40,7 +40,7 @@ void Usage(char *nomeProg)
   exit(1);
 }
 
-typedef enum {INICIO, FIM} t_mode;
+typedef enum {INICIO, FIM, NO_OUT} t_mode;
 
 
 /******************************************************************************
@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
   char *nomeFicheiroIn, *nomeFicheiroOut;
   char novaPal[DIM_MAX_PALAVRA];
   FILE *fpIn,*fpOut;
-  t_mode mode;
+  t_mode mode = NO_OUT;
 
   if(argc < 2)
     Usage(argv[0]);
