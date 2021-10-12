@@ -38,6 +38,8 @@ void Usage(char *nomeProg)
   exit(1);
 }
 
+typedef enum {INICIO, FIM} t_mode;
+
 
 /******************************************************************************
  * main ()
@@ -59,6 +61,7 @@ int main(int argc, char *argv[])
   char *nomeFicheiroIn, *nomeFicheiroOut;
   char novaPal[DIM_MAX_PALAVRA];
   FILE *fpIn,*fpOut;
+  t_mode mode;
 
   if(argc < 2)
     Usage(argv[0]);
@@ -67,7 +70,11 @@ int main(int argc, char *argv[])
   nomeFicheiroOut = (char*) malloc(strlen(argv[1]) + 1 + strlen(extOut));
     if(nomeFicheiroOut == NULL)
       erroMemoria("Memory allocation for nomeFicheiroOut in main" );
-
+  if(argv == 3){
+    if(strcmp(argv[2], "INICIO") == 0) mode = INICIO;
+    else if(strcmp(argv[2], "FIM") == 0) mode = FIM;
+    else exit(1);
+  }
   strcpy(nomeFicheiroOut, nomeFicheiroIn);
   strcat(nomeFicheiroOut, extOut);
 
@@ -110,4 +117,28 @@ int main(int argc, char *argv[])
   /* -- FREE ANY OTHER MEMORY YOU HAVE ALLOCATED -- */
   free(nomeFicheiroOut);
   exit(0);
+}
+
+void write_back(t_lista *lp, FILE *fpOut)
+{
+  t_lista *aux = lp;
+  if(aux -> prox == NULL)
+  {
+    escreveUmaPalavra((t_palavra*) getItemLista(aux), fpOut);
+  }
+  else
+  {
+    write_back(aux->prox, fpOut);
+    escreveUmaPalavra((t_palavra*) getItemLista(aux), fpOut);
+  }
+  return;
+}
+
+void write_front(t_lista *lp, FILE *fpOut)
+{
+  t_lista *aux = lp;
+  while(aux != NULL) {
+    escreveUmaPalavra((t_palavra*) getItemLista(aux), fpOut);
+    aux = getProxElementoLista(aux);
+  }
 }

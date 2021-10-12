@@ -21,7 +21,10 @@
 #define Item void*
 
 /* type definition for structure to hold list item */
-typedef struct _t_lista t_lista;
+typedef struct _t_lista {
+  Item            this;
+  struct _t_lista *prox;
+} t_lista;
 
 
 t_lista  *iniLista (void);

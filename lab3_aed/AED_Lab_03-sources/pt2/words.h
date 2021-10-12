@@ -24,7 +24,10 @@ void    libertaItem(Item this);
 
 
 /* type definition for structure to hold word */
-typedef struct _t_palavra t_palavra;
+typedef struct _t_palavra {
+  char* pal;
+  int ocorrencias;
+} t_palavra;
 
 
 /* Interface functions for type t_palavra */
