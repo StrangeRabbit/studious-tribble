@@ -21,6 +21,8 @@
 
 #define DIM_MAX_PALAVRA 200
 
+void write_back(t_lista *lp, FILE *fpOut);
+void write_front(t_lista *lp, FILE *fpOut);
 
 /******************************************************************************
  * Usage ()
@@ -70,7 +72,7 @@ int main(int argc, char *argv[])
   nomeFicheiroOut = (char*) malloc(strlen(argv[1]) + 1 + strlen(extOut));
     if(nomeFicheiroOut == NULL)
       erroMemoria("Memory allocation for nomeFicheiroOut in main" );
-  if(argv == 3){
+  if(argc == 3){
     if(strcmp(argv[2], "INICIO") == 0) mode = INICIO;
     else if(strcmp(argv[2], "FIM") == 0) mode = FIM;
     else exit(1);
