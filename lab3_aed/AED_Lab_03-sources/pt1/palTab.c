@@ -208,7 +208,7 @@ void EscreveFicheiro ( char *ficheiro, st_texto *t )
   FILE *f;
   char *nome;
   int i = 0;
-
+  int max = 0;
   nome =  (char*) malloc(strlen(ficheiro) + strlen(".palavras") + 1) ;
   /* including dot (.) extension and string termination, see below */
   if ( nome == NULL ) {
@@ -219,9 +219,10 @@ void EscreveFicheiro ( char *ficheiro, st_texto *t )
   strcat ( nome, ".palavras" );
   f = AbreFicheiro ( nome, "w" );
   for ( i = 0; i < (*t).n_dist_palavras; i++ ) {
+    if((*t).ocorrencias[i] > (*t).ocorrencias[max]) max = i;
     fprintf ( f, "%d: %s\n", (*t).ocorrencias[i], (*t).palavras[i] );
   }
-  printf ( "Count of distinct words: %d\n", (*t).n_dist_palavras );
+  printf ( "Count of distinct words: %d \n Most frequent word %s %d", (*t).n_dist_palavras, (*t).palavras[max],  (*t).ocorrencias[max]);
   fclose ( f );
   for ( i = 0; i < (*t).n_total_palavras; i++ ) {
     free((*t).palavras[i]);
