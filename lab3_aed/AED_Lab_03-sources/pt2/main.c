@@ -98,10 +98,11 @@ int main(int argc, char *argv[])
     exit(3);
   }
   /* write out words to output file */
-  aux = lp;
-  while(aux != NULL) {
-    escreveUmaPalavra((t_palavra*) getItemLista(aux), fpOut);
-    aux = getProxElementoLista(aux);
+  if(mode == INICIO){
+    write_front(lp, fpOut);
+  }
+  else{
+    write_back(lp, fpOut);
   }
 
   numPalavrasDiferentes = numItensNaLista(lp);
