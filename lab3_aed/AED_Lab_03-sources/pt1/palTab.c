@@ -222,7 +222,7 @@ void EscreveFicheiro ( char *ficheiro, st_texto *t )
     if((*t).ocorrencias[i] > (*t).ocorrencias[max]) max = i;
     fprintf ( f, "%d: %s\n", (*t).ocorrencias[i], (*t).palavras[i] );
   }
-  printf ( "Count of distinct words: %d \n Most frequent word %s %d", (*t).n_dist_palavras, (*t).palavras[max],  (*t).ocorrencias[max]);
+  printf ( "Count of distinct words: %d \n\tMost frequent word %s %d\n", (*t).n_dist_palavras, (*t).palavras[max],  (*t).ocorrencias[max]);
   fclose ( f );
   for ( i = 0; i < (*t).n_total_palavras; i++ ) {
     free((*t).palavras[i]);
