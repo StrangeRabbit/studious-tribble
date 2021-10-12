@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
   if(mode == INICIO){
     write_front(lp, fpOut);
   }
-  else{
+  else if(mode == FIM){
     write_back(lp, fpOut);
   }
 
