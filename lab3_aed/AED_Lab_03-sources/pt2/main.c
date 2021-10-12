@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     Usage(argv[0]);
 
   nomeFicheiroIn = argv[1];
-  nomeFicheiroOut = /* -- INSERT CODE to ALLOCATE MEMORY -- */
+  nomeFicheiroOut = (char*) malloc(strlen(argv[1]) + 1 + strlen(extOut));
     if(nomeFicheiroOut == NULL)
       erroMemoria("Memory allocation for nomeFicheiroOut in main" );
 
@@ -105,8 +105,9 @@ int main(int argc, char *argv[])
   libertaLista(lp, libertaItem);
 
   /* -- CLOSE ALL OPEN FILES -- */
-
+  fclose(fpIn);
+  fclose(fpOut);
   /* -- FREE ANY OTHER MEMORY YOU HAVE ALLOCATED -- */
-
+  free(nomeFicheiroOut);
   exit(0);
 }
