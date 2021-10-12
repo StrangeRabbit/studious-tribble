@@ -56,7 +56,8 @@ typedef enum {INICIO, FIM, NO_OUT} t_mode;
 
 int main(int argc, char *argv[])
 {
-  t_lista *lp, *aux;
+  t_lista *lp;
+  /*t_lista *aux;*/
   int numTotalPalavras = 0;
   int numPalavrasDiferentes;
   char extOut[] = ".palavras";
@@ -101,7 +102,11 @@ int main(int argc, char *argv[])
   }
   /* write out words to output file */
   if(mode == INICIO){
-    write_front(lp, fpOut);
+    t_lista *aux = lp;
+    while(aux != NULL) {
+      escreveUmaPalavra((t_palavra*) getItemLista(aux), fpOut);
+      aux = getProxElementoLista(aux);
+    }
   }
   else if(mode == FIM){
     write_back(lp, fpOut);
@@ -124,21 +129,11 @@ int main(int argc, char *argv[])
 
 void write_back(t_lista *lp, FILE *fpOut)
 {
-  t_lista *aux = lp;
-  if(aux -> prox != NULL)
+  if(lp != NULL)
   {
-    write_back(aux->prox, fpOut);
+    write_back(getProxElementoLista(lp), fpOut);
   }
-  escreveUmaPalavra((t_palavra*) getItemLista(aux), fpOut);
+  escreveUmaPalavra((t_palavra*) getItemLista(lp), fpOut);
   
   return;
-}
-
-void write_front(t_lista *lp, FILE *fpOut)
-{
-  t_lista *aux = lp;
-  while(aux != NULL) {
-    escreveUmaPalavra((t_palavra*) getItemLista(aux), fpOut);
-    aux = getProxElementoLista(aux);
-  }
 }
