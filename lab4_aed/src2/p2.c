@@ -77,9 +77,9 @@ int main(int argc, char *argv[]) {
    }
 
    /* allocate memory, read in the array and print it */
-   vec = (int**) malloc( sizeof(int*) * result );
+   vec = (int**) malloc( sizeof(int*) * N );
    for(i = 0; i < result; i++)
-      vec[i] = (int*) malloc(sizeof(int) * result);
+      vec[i] = (int*) malloc(sizeof(int) * N);
    
 
    for (i = 0; i < N; i++)
