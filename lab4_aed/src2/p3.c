@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
         printVecDyn(vecDyn);
         break;
      case 'd':
-        deleteVecDyn(vecDyn);
+        vecDyn = deleteVecDyn(vecDyn);
         break;
      case 'o':
         val2 = occupancyVecDyn(vecDyn);
@@ -108,6 +108,7 @@ int main(int argc, char *argv[])
         break;
      case 'l':
         vecDyn = shiftLeftVecDyn(vecDyn);
+        printf("a\n");
         break;
      case 'r':
         fscanf(fp, "%d", &val1);

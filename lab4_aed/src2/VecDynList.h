@@ -325,7 +325,7 @@ void printVecDyn(VecDyn * vecDyn);
  *  Return value:
  *    None.
  */
-void deleteVecDyn(VecDyn * vecDyn);
+VecDyn * deleteVecDyn(VecDyn * vecDyn);
 
 
 /* End of: Protect multiple inclusions                              */

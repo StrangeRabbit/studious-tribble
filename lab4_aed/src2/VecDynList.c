@@ -19,6 +19,7 @@
 /* Header Inclusions                                              */
 #include<stdio.h>
 #include<stdlib.h>
+#include<math.h>
 
 
 
@@ -242,11 +243,25 @@ int occupancyVecDyn(VecDyn * vecDyn)
 VecDyn * insertVecDyn(VecDyn * vecDyn, int val)
 {
   VecDyn *new = vecDyn;
-
+  int index;
+  if(vecDyn == ((VecDyn*) NULL)){
+    if((new = initVecDyn()) == NULL) {
+      freeVecDyn(vecDyn);
+      exit(1);
+    }
+  }
+  else if(new->free == 0){
+    if((new = initVecDynSegment(vecDyn->size * 2)) == NULL) {
+      freeVecDyn(vecDyn);
+      exit(1);
+    }
+    new->next = vecDyn;
+  }
+  index = new->size - new->free;
+  new->table[index] = val;
+  new->free--;
   return new;
 }
-
-
 
 /*
  *  Function:
@@ -272,7 +287,7 @@ int getVecDynValue(VecDyn * vecDyn, int index)
   int val;
 
   /* check if outside table bounds */
-  if ((index < 0) || (index > (2 * vecDyn->size - 2) - venDyn->free))
+  if ((index < 0) || (index > (2 * vecDyn->size - 2) - vecDyn->free))
     exit(1);
 
   /* determine the right segment */
@@ -313,10 +328,15 @@ int getVecDynValue(VecDyn * vecDyn, int index)
  */
 void modifyVecDynValue(VecDyn * vecDyn, int idx, int val)
 {
+  /* validate idx     */
+  if(idx < 0 || idx > sizeVecDyn(vecDyn)) exit(1);
 
-   return;
+  while(vecDyn->size > idx){
+    vecDyn = vecDyn->next;
+  }
+  vecDyn->table[idx - vecDyn->size] = val;
+  return;
 }
-
 
 /*
  *  Function:
@@ -336,7 +356,13 @@ void modifyVecDynValue(VecDyn * vecDyn, int idx, int val)
  */
 int maxVecDynValue(VecDyn * vecDyn)
 {
-   int max = 0;
+  int max = 0;
+  int i;
+  while(vecDyn != NULL){
+    for(i = vecDyn->size - vecDyn->free; i >= 0; i--)
+      if(vecDyn->table[i] > max) max = vecDyn->table[i];
+    vecDyn = vecDyn->next;
+  }
 
    return(max);
 }
@@ -360,9 +386,14 @@ int maxVecDynValue(VecDyn * vecDyn)
  */
 int minVecDynValue(VecDyn * vecDyn)
 {
-   int min = 0;
-
-   return(min);
+  int min = 0;
+  int i;
+  while(vecDyn != NULL){
+    for(i = vecDyn->size - vecDyn->free; i >= 0; i--)
+      if(vecDyn->table[i] < min) min = vecDyn->table[i];
+    vecDyn = vecDyn->next;
+  }
+  return(min);
 }
 
 
@@ -386,9 +417,18 @@ int minVecDynValue(VecDyn * vecDyn)
  */
 VecDyn *shiftLeftVecDyn(VecDyn * vecDyn)
 {
-   VecDyn *result = (VecDyn*) NULL;
-
-   return(result);
+  VecDyn *result = (VecDyn*) NULL;
+  /*
+  int i;
+  if(vecDyn == NULL) return NULL;
+  for(i = 1; i <= occupancyVecDyn(vecDyn); i++){
+    if(i < occupancyVecDyn(vecDyn))
+      modifyVecDynValue(vecDyn, i, getVecDynValue(vecDyn, i + 1));
+    //printf("%d\n", i);
+  }
+  vecDyn->free--;
+  */
+   return(vecDyn);
 }
 
 
@@ -493,9 +533,9 @@ void printVecDyn(VecDyn * vecDyn)
  *  Return value:
  *    None.
  */
-void deleteVecDyn(VecDyn * vecDyn)
+VecDyn *deleteVecDyn(VecDyn * vecDyn)
 {
    freeVecDyn(vecDyn);
 
-   return;
+   return NULL;
 }
