@@ -329,12 +329,19 @@ int getVecDynValue(VecDyn * vecDyn, int index)
 void modifyVecDynValue(VecDyn * vecDyn, int idx, int val)
 {
   /* validate idx     */
-  if(idx < 0 || idx > sizeVecDyn(vecDyn)) exit(1);
+  if ((idx < 0) || (idx > (2 * vecDyn->size - 2) - vecDyn->free))
+    exit(1);
 
-  while(vecDyn->size > idx){
-    vecDyn = vecDyn->next;
+  /* determine the right segment */
+  for(;;) {
+    if (idx < (vecDyn->size - 1)) {
+      vecDyn = vecDyn->next;
+    } else {
+      vecDyn->table[idx - (vecDyn->size-1)] = val ;
+      break;
+    }
+
   }
-  vecDyn->table[idx - vecDyn->size] = val;
   return;
 }
 
