@@ -16,10 +16,10 @@ CC = gcc
 CFLAGS = -g -Wall -ansi -pedantic
 
 #   Sources
-SOURCES = word.c sortwords.c
+SOURCES = word.c sortwords.c qsortwords.c
 
 #   Objects  ('make' automatically compiles .c to .o)
-OBJECTS = word.o sortwords.o
+OBJECTS = word.o sortwords.o qsortwords.o
 QOBJECTS = word.o qsortwords.o
 
 sortwords: $(OBJECTS)
