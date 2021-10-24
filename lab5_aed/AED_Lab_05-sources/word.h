@@ -36,7 +36,10 @@ void WriteFile(Tabword t, char *file, int numWords);
 void FreeWordArray(Tabword *t, int TnumWords);
 
 int  LessAlphabetic(Item a, Item b);
+int  MoreAlphabetic(Item a, Item b);
 int  LessNumUses(Item a, Item b);
+int  MoreNumUses(Item a, Item b);
 int  LessLength(Item a, Item b);
+int  MoreLength(Item a, Item b);
 
 #endif

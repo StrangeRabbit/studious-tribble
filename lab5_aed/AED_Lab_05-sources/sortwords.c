@@ -112,6 +112,42 @@ int main(int argc, char **argv)
 
       /*==== TODO ====*/
       /* -- sort(....); -- */
+      sort((void**)tabword, 0, numWords - 1, LessAlphabetic);
+
+   }
+   if ((criterio == alphabetic) && (sentido == descending)) {
+
+      /*==== TODO ====*/
+      /* -- sort(....); -- */
+      sort((void**)tabword, 0, numWords - 1, MoreAlphabetic);
+
+   }
+   if ((criterio == occurrences) && (sentido == ascending)) {
+
+      /*==== TODO ====*/
+      /* -- sort(....); -- */
+      sort((void**)tabword, 0, numWords - 1, LessNumUses);
+
+   }
+   if ((criterio == occurrences) && (sentido == descending)) {
+
+      /*==== TODO ====*/
+      /* -- sort(....); -- */
+      sort((void**)tabword, 0, numWords - 1, MoreNumUses);
+
+   }
+   if ((criterio == length) && (sentido == ascending)) {
+
+      /*==== TODO ====*/
+      /* -- sort(....); -- */
+      sort((void**)tabword, 0, numWords - 1, LessLength);
+
+   }
+   if ((criterio == length) && (sentido == descending)) {
+
+      /*==== TODO ====*/
+      /* -- sort(....); -- */
+      sort((void**)tabword, 0, numWords - 1, MoreLength);
 
    }
    /* other user options */
@@ -124,6 +160,7 @@ int main(int argc, char **argv)
    /*  printf("Number of different words: %d\n", n_palavras);  */
 
    /* -- Insert code to call functions to free allocated memory -- */
+   FreeWordArray(&tabword, numWords);
 
    /*==== TODO ====*/
 
