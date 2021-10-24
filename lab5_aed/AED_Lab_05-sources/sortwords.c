@@ -18,7 +18,6 @@
 
 
 #include "word.h"
-#include "qsortwords.h"
 
 enum sort_order {ascending, descending};
 
@@ -114,42 +113,36 @@ int main(int argc, char **argv)
       /*==== TODO ====*/
       /* -- sort(....); -- */
       /*sort((void**)tabword, 0, numWords - 1, LessAlphabetic);*/
-      quicksort((void**) tabword, 0, numWords - 1, LessAlphabetic);
    }
    if ((criterio == alphabetic) && (sentido == descending)) {
 
       /*==== TODO ====*/
       /* -- sort(....); -- */
-      /*sort((void**)tabword, 0, numWords - 1, MoreAlphabetic);*/
-      quicksort((void**) tabword, 0, numWords - 1, MoreAlphabetic);
+      sort((void**)tabword, 0, numWords - 1, MoreAlphabetic);
    }
    if ((criterio == occurrences) && (sentido == ascending)) {
 
       /*==== TODO ====*/
       /* -- sort(....); -- */
-      /*sort((void**)tabword, 0, numWords - 1, LessNumUses);*/
-      quicksort((void**) tabword, 0, numWords - 1, LessNumUses);
+      sort((void**)tabword, 0, numWords - 1, LessNumUses);
    }
    if ((criterio == occurrences) && (sentido == descending)) {
 
       /*==== TODO ====*/
       /* -- sort(....); -- */
-      /*sort((void**)tabword, 0, numWords - 1, MoreNumUses);*/
-      quicksort((void**) tabword, 0, numWords - 1, MoreNumUses);
+      sort((void**)tabword, 0, numWords - 1, MoreNumUses);
    }
    if ((criterio == length) && (sentido == ascending)) {
 
       /*==== TODO ====*/
       /* -- sort(....); -- */
-      /*sort((void**)tabword, 0, numWords - 1, LessLength);*/
-      quicksort((void**) tabword, 0, numWords - 1, LessLength);
+      sort((void**)tabword, 0, numWords - 1, LessLength);
    }
    if ((criterio == length) && (sentido == descending)) {
 
       /*==== TODO ====*/
       /* -- sort(....); -- */
-      /*sort((void**)tabword, 0, numWords - 1, MoreLength);*/
-      quicksort((void**) tabword, 0, numWords - 1, MoreLength);
+      sort((void**)tabword, 0, numWords - 1, MoreLength);
    }
    /* other user options */
    /*==== TODO ====*/

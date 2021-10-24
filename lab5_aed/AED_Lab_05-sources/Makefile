@@ -19,7 +19,7 @@ CFLAGS = -g -Wall -ansi -pedantic
 SOURCES = word.c sortwords.c qsortwords.c
 
 #   Objects  ('make' automatically compiles .c to .o)
-OBJECTS = word.o sortwords.o qsortwords.o
+OBJECTS = word.o sortwords.o
 QOBJECTS = word.o qsortwords.o
 
 sortwords: $(OBJECTS)
@@ -40,13 +40,18 @@ clean:
 	rm -f *.o  sortwords qsortwords
 
 
-FILES = $(shell ls ../test/*.txt)
+FILES = $(shell ls ../AED_Lab_05-tests/*.txt)
 
 VALG = valgrind --leak-check=full
 
-t:
-	for F in ${FILES}; do  ./sortwords $${F} ; done;
+t-comprimento:
+	for F in ${FILES}; do  ./sortwords $${F} -comprimento; done;
 
+t-alfabetica:
+	for F in ${FILES}; do  ./sortwords $${F} -alfabetica; done;
+
+t-ocorrencias:
+	for F in ${FILES}; do  ./sortwords $${F} -ocorrencias; done;
 
 tv:
 	for F in ${FILES}; do ${VALG} ./sortwords $${F} ; done;
@@ -57,9 +62,14 @@ tt:
 
 
 
-qt:
-	for F in ${FILES}; do  ./qsortwords $${F} ; done;
+qt-comprimento:
+	for F in ${FILES}; do  ./qsortwords $${F} -comprimento; done;
 
+qt-alfabetica:
+	for F in ${FILES}; do  ./qsortwords $${F} -alfabetica; done;
+
+qt-ocorrencias:
+	for F in ${FILES}; do  ./qsortwords $${F} -ocorrencias; done;
 
 qtv:
 	for F in ${FILES}; do ${VALG} ./qsortwords $${F} ; done;
