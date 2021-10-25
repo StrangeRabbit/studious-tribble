@@ -54,10 +54,14 @@ void sort(Item a[], int l, int r, int (*less) (Item, Item))
    for (i = l + 1; i <= r; i++) {
       Item v = a[i];
       j = i;
+      OP_CNT++;
       while (j > l && less(v, a[j - 1])) {
+         OP_CNT++;
          a[j] = a[j - 1];
+         OP_CNT++;
          j--;
       }
+      OP_CNT++;
       a[j] = v;
    }
    return;
@@ -112,7 +116,7 @@ int main(int argc, char **argv)
 
       /*==== TODO ====*/
       /* -- sort(....); -- */
-      /*sort((void**)tabword, 0, numWords - 1, LessAlphabetic);*/
+      sort((void**)tabword, 0, numWords - 1, LessAlphabetic);
    }
    if ((criterio == alphabetic) && (sentido == descending)) {
 
