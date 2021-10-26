@@ -86,4 +86,18 @@ qtv:
 qtt:
 	for F in ${FILES}; do  time ./qsortwords $${F} ; done;
 
+qtm-comprimento:
+	for F in ${FILES}; do  ./qsortmedian $${F} -comprimento; done;
 
+qtm-alfabetica:
+	for F in ${FILES}; do  ./qsortmedian $${F} -alfabetica; done;
+
+qtm-ocorrencias:
+	for F in ${FILES}; do  ./qsortmedian $${F} -ocorrencias; done;
+
+qtmv:
+	for F in ${FILES}; do ${VALG} ./qsortmedian $${F} ; done;
+
+
+qtmt:
+	for F in ${FILES}; do  time ./qsortmedian $${F} ; done;
