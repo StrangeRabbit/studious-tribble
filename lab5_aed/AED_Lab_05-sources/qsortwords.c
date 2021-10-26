@@ -50,9 +50,30 @@ int partition(Item a[], int l, int r, int (*less) (Item, Item))
 {
     int i, j;
     Item v, t;
+    
+    int m = (r - l) / 2;
+    OP_CNT++;
+    if(less(a[l], a[m])){
+        exch(t, a[l], a[m]);
+        OP_CNT++;
+    }
+    OP_CNT++;
+    if(less(a[m], a[r])){
+        exch(t, a[m], a[r]);
+        OP_CNT++;
+    }
+    OP_CNT++;
+    if(less(a[l], a[m])){
+        exch(t, a[l], a[m]);
+        OP_CNT++;
+    }
+    OP_CNT++;
+    exch(t, a[m], a[r]);
+    
     v = a[r];
     i = l - 1;
     j = r;
+
     for(;;){
         OP_CNT++;
         while(less(a[++i], v))
