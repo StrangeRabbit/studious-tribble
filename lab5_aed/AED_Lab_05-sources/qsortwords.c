@@ -55,10 +55,13 @@ int partition(Item a[], int l, int r, int (*less) (Item, Item))
     j = r;
     for(;;){
         OP_CNT++;
-        while(less(a[++i], v));
+        while(less(a[++i], v))
+            OP_CNT++;
         OP_CNT++;
-        while(less(v, a[--j]))
+        while(less(v, a[--j])){
+            OP_CNT++;
             if(j == l) break;
+        }
         if(i >= j) break;
         OP_CNT++;
         exch(t, a[i], a[j]);
