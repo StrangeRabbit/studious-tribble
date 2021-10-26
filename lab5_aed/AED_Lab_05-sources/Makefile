@@ -21,6 +21,7 @@ SOURCES = word.c sortwords.c qsortwords.c
 #   Objects  ('make' automatically compiles .c to .o)
 OBJECTS = word.o sortwords.o
 QOBJECTS = word.o qsortwords.o
+QQOBJECTS = word.o qsortmedian.o
 
 sortwords: $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $(OBJECTS)
@@ -36,8 +37,15 @@ word.o: word.c word.h defs.h
 
 qsortwords.o: qsortwords.c word.h defs.h
 
+qsortmedian: $(QQOBJECTS)
+	$(CC) $(CFLAGS) -o $@ $(QQOBJECTS)
+
+word.o: word.c word.h defs.h
+
+qsortmedian.o: qsortmedian.c word.h defs.h
+
 clean:
-	rm -f *.o  sortwords qsortwords
+	rm -f *.o  sortwords qsortwords qsortmedian
 
 
 FILES = $(shell ls ../AED_Lab_05-tests/*.txt)
