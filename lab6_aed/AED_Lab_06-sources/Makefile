@@ -29,7 +29,7 @@ LinkedList.o: LinkedList.h defs.h LinkedList.c
 clean::
 	rm -f *.o core a.out pg1 pg2 listest  *~
 
-VAL = --leak-check=full
+VAL = valgrind --leak-check=full
 # TRASH
 #======================
 # quick check of List package
