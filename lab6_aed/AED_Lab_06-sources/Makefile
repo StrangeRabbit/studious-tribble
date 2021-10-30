@@ -14,7 +14,7 @@ SOURCES_2 = LinkedList.c  pg2.c
 OBJECTS_1 = pg1.o
 OBJECTS_2 = LinkedList.o pg2.o
 
-all: pg1 #pg2
+all: pg1 pg2
 
 pg1: $(OBJECTS_1)
 	$(CC) $(CFLAGS) -o $@ $(OBJECTS_1)
@@ -25,11 +25,11 @@ pg2: $(OBJECTS_2)
 
 LinkedList.o: LinkedList.h defs.h LinkedList.c
 
-VAL = --leak-check=full
 
 clean::
 	rm -f *.o core a.out pg1 pg2 listest  *~
 
+VAL = --leak-check=full
 # TRASH
 #======================
 # quick check of List package
@@ -47,3 +47,8 @@ t:
 	./pg1 ../AED_Lab_06-tests/grafo4.adj > grafo4.edge
 	./pg1 ../AED_Lab_06-tests/grafo5.adj > grafo5.edge
 	./pg1 ../AED_Lab_06-tests/grafo6.adj > grafo6.edge
+t2:
+	./pg2 ../AED_Lab_06-tests/grafo11.edge
+	./pg2 ../AED_Lab_06-tests/grafo4.edge
+	./pg2 ../AED_Lab_06-tests/grafo5.edge
+	./pg2 ../AED_Lab_06-tests/grafo6.edge

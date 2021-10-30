@@ -39,7 +39,7 @@ int main(int argc, char **argv)
         }
         if(G > G_max) G_max = G;
     }
-
+    E /= 2;
     fclose(fp);
     /* write in terminal 1.2 and 1.3*/
     fprintf(stderr, "%f\n%d\n", (float) 2 * E / V, G_max);
