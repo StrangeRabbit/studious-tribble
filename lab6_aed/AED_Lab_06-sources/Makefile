@@ -27,7 +27,7 @@ LinkedList.o: LinkedList.h defs.h LinkedList.c
 
 
 clean::
-	rm -f *.o core a.out pg1 pg2 listest  *~
+	rm -f *.o core a.out pg1 pg2 listest  *~ *.edge ../AED_Lab_06-tests/*.edge ../AED_Lab_06-tests/*.ladj
 
 VAL = valgrind --leak-check=full
 # TRASH
