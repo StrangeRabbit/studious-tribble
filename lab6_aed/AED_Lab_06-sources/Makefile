@@ -52,3 +52,8 @@ t2:
 	./pg2 ../AED_Lab_06-tests/grafo4.edge
 	./pg2 ../AED_Lab_06-tests/grafo5.edge
 	./pg2 ../AED_Lab_06-tests/grafo6.edge
+t2v:
+	${VAL} ./pg2 ../AED_Lab_06-tests/grafo11.edge
+	${VAL} ./pg2 ../AED_Lab_06-tests/grafo4.edge
+	${VAL} ./pg2 ../AED_Lab_06-tests/grafo5.edge
+	${VAL} ./pg2 ../AED_Lab_06-tests/grafo6.edge
