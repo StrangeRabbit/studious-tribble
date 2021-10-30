@@ -25,6 +25,8 @@ pg2: $(OBJECTS_2)
 
 LinkedList.o: LinkedList.h defs.h LinkedList.c
 
+VAL = --leak-check=full
+
 clean::
 	rm -f *.o core a.out pg1 pg2 listest  *~
 
@@ -35,6 +37,11 @@ listest: LinkedList.o listest.c
 	$(CC) $(CFLAGS) -o $@ listest.c LinkedList.o
 
 # tests w/ stdout dump to .edge | tail +3
+tv:
+	${VAL} ./pg1 ../AED_Lab_06-tests/grafo11.adj > grafo11.edge
+	${VAL} ./pg1 ../AED_Lab_06-tests/grafo4.adj > grafo4.edge
+	${VAL} ./pg1 ../AED_Lab_06-tests/grafo5.adj > grafo5.edge
+	${VAL} ./pg1 ../AED_Lab_06-tests/grafo6.adj > grafo6.edge
 t:
 	./pg1 ../AED_Lab_06-tests/grafo11.adj > grafo11.edge
 	./pg1 ../AED_Lab_06-tests/grafo4.adj > grafo4.edge
