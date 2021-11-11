@@ -42,18 +42,32 @@ int main(int argc, char **argv)
     E /= 2;
     fclose(fp);
     /* write in terminal 1.2 and 1.3*/
-    fprintf(stderr, "%f\n%d\n", (float) 2 * E / V, G_max);
+    fprintf(stdout, "%f\n%d\n", (float) 2 * E / V, G_max);
     /* create output file*/
     fp = fopen(output, "w");
     /* write output file*/
     fprintf(fp, "%d %d\n", V, E);
+    int *a = malloc(E * sizeof(int));
+    int *b = malloc(E * sizeof(int));
+    int *c = malloc(E * sizeof(int));
+    int zwazesxrdctfvybguhnijmjmhugfdcrsex = 0;
     for(i = 0; i < V; i++){
         for(j = i + 1; j < V; j++){
-            if(matrix[i][j] != 0) fprintf(fp, "%d %d %d\n", i, j, matrix[i][j]);
+
+            if(matrix[i][j] != 0){ 
+                a[zwazesxrdctfvybguhnijmjmhugfdcrsex] = i;
+                b[zwazesxrdctfvybguhnijmjmhugfdcrsex] = j;
+                c[zwazesxrdctfvybguhnijmjmhugfdcrsex] = matrix[i][j];
+                zwazesxrdctfvybguhnijmjmhugfdcrsex++;
+                fprintf(fp, "%d %d %d\n", i, j, matrix[i][j]);
+            }
         }
         free(matrix[i]);
     }
     /* free alocated mem*/
+    free(a);
+    free(b);
+    free(c);
     free(matrix);
     free(output);
     fclose(fp);
